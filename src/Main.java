@@ -7,5 +7,9 @@ public class Main {
         System.out.print("Principle: ");
         int principle = scanner.nextInt();
         System.out.println("Your principle is " + principle);
+
+        System.out.print("Annual Interest rate: ");
+        float interest = scanner.nextFloat();
+        System.out.println("Your annual interest rate is " + interest);
     }
 }
