@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int principal = 0;
+        float interest = 0;
 
         while (true) {
             System.out.print("Principle (1000 - 1000000): ");
@@ -13,13 +14,18 @@ public class Main {
         } else {
                 System.out.println("Enter a number between 1000 and 1000000");
             }
-
-
         }
         System.out.println("Your principle is £" + principal);
 
-        System.out.print("Annual Interest rate: ");
-        float interest = scanner.nextFloat();
+        while (true) {
+            System.out.print("Annual Interest rate: ");
+            interest = scanner.nextFloat();
+            if (interest > 0 && interest <= 30) {
+                break;
+            } else {
+                System.out.println("Enter a number between 0 and 30");
+            }
+        }
         System.out.println("Your annual interest rate is " + interest + "%");
 
         System.out.print("Mortage period (years): ");
