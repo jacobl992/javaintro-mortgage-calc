@@ -1,10 +1,14 @@
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        byte MONTHS_IN_YEAR = 12;
         int principal = 0;
         float interest = 0;
+        int years = 0;
+        int numberOfPayments = 0;
 
         while (true) {
             System.out.print("Principle (1000 - 1000000): ");
@@ -28,19 +32,26 @@ public class Main {
         }
         System.out.println("Your annual interest rate is " + interest + "%");
 
+        while (true) {
         System.out.print("Mortage period (years): ");
-        int years = scanner.nextInt();
+        years = scanner.nextInt();
+            if (years > 0 && years <= 50) {
+                numberOfPayments = years * MONTHS_IN_YEAR;
+                break;
+            } else {
+                System.out.println("Enter a number between 1 and 50");
+            }
+        }
         System.out.println("Mortgage spread over " + years + " years");
 
-        byte monthsInYear = 12;
-        int numberOfPayments = years * monthsInYear;
-        float monthlyInterest = interest / 100 / monthsInYear;
-
+        float monthlyInterest = interest / 100 / MONTHS_IN_YEAR;
         double topline = monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments);
         double bottomline = Math.pow(1 + monthlyInterest, numberOfPayments) - 1;
         double mortgage = principal * (topline / bottomline);
 
-        System.out.print("Your mortgage will be £" + mortgage);
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        System.out.print("Your mortgage will be £" + df.format(mortgage));
         System.out.flush();
     }
 }
