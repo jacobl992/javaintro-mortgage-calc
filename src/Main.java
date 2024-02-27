@@ -1,13 +1,22 @@
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        int principal = 0;
 
-        System.out.print("Principle: ");
-        int principle = scanner.nextInt();
-        System.out.println("Your principle is £" + principle);
+        while (true) {
+            System.out.print("Principle (1000 - 1000000): ");
+             principal = scanner.nextInt();
+            if (principal >= 1000 && principal <= 1000_000) {
+                break;
+        } else {
+                System.out.println("Enter a number between 1000 and 1000000");
+            }
+
+
+        }
+        System.out.println("Your principle is £" + principal);
 
         System.out.print("Annual Interest rate: ");
         float interest = scanner.nextFloat();
@@ -23,7 +32,7 @@ public class Main {
 
         double topline = monthlyInterest * Math.pow(1 + monthlyInterest, numberOfPayments);
         double bottomline = Math.pow(1 + monthlyInterest, numberOfPayments) - 1;
-        double mortgage = principle * (topline / bottomline);
+        double mortgage = principal * (topline / bottomline);
 
         System.out.print("Your mortgage will be £" + mortgage);
         System.out.flush();
